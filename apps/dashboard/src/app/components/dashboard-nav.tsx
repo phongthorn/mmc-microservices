@@ -1,6 +1,7 @@
 "use client";
 
-import { BarChart3, Users, Settings, Package, Calendar } from "lucide-react";
+import Link from "next/link";
+import { BarChart3, Users, FileText, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -9,10 +10,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 export function DashboardNav() {
@@ -24,55 +21,35 @@ export function DashboardNav() {
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive>
-              <a href="#" className="flex items-center gap-2">
+            <SidebarMenuButton asChild>
+              <Link href="/" className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
                 <span>Dashboard</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="#" className="flex items-center gap-2">
+              <Link href="/customers" className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
                 <span>Customers</span>
-              </a>
-            </SidebarMenuButton>
-            <SidebarMenuSub>
-              <SidebarMenuSubItem>
-                <SidebarMenuSubButton asChild>
-                  <a href="#">Active Users</a>
-                </SidebarMenuSubButton>
-              </SidebarMenuSubItem>
-              <SidebarMenuSubItem>
-                <SidebarMenuSubButton asChild>
-                  <a href="#">User Management</a>
-                </SidebarMenuSubButton>
-              </SidebarMenuSubItem>
-            </SidebarMenuSub>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild>
-              <a href="#" className="flex items-center gap-2">
-                <Package className="h-4 w-4" />
-                <span>Products</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="#" className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>Calendar</span>
-              </a>
+              <Link href="/invoices" className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                <span>Invoices</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <a href="#" className="flex items-center gap-2">
+              <Link href="/settings" className="flex items-center gap-2">
                 <Settings className="h-4 w-4" />
                 <span>Settings</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

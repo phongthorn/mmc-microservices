@@ -1,12 +1,30 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
+import { getDb } from "./db.js";
+import issuersRouter from "./routes/issuers.js";
+import customersRouter from "./routes/customers.js";
+import invoicesRouter from "./routes/invoices.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
 const app = express();
+app.use(express.json()); // Enable JSON body parsing
 app.use(cookieParser());
 
+// Initialize Database
+getDb().then(() => {
+  console.log("Database initialized");
+}).catch(err => {
+  console.error("Failed to initialize database:", err);
+});
+
+// Routes
+app.use("/api/issuers", issuersRouter);
+app.use("/api/customers", customersRouter);
+app.use("/api/invoices", invoicesRouter);
+
+// Legacy routes (kept for compatibility if needed, or can be removed)
 interface User {
   id: string;
   name: string;
@@ -178,7 +196,7 @@ function generateRandomActivity() {
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   const randomTime = new Date(
     thirtyDaysAgo.getTime() +
-      Math.random() * (now.getTime() - thirtyDaysAgo.getTime())
+    Math.random() * (now.getTime() - thirtyDaysAgo.getTime())
   );
 
   return {
